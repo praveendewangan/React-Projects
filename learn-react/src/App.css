@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+
+.lightBlue {
+  color: #76b2e6;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.darkGrey {
+  color: #444;
+}
+
+.red {
+  color: red;
+}
+
+.App button {
+    background-color :#0c76e4;
+    font : inherit;
+    color : #b6cee6;
+    border : 0px solid blue;
+    box-shadow : 0px 0px 3px 1px #bbafaf;
+    outline : none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.App button:hover {
+    background-color : #E91E63;
+}
+
+.App button.blackGrey {
+  background: #2d292b;
+}
+
+.App button.blackGrey:hover {
+  background: #06045e;
+}
