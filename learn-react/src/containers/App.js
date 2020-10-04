@@ -4,7 +4,8 @@ import classes from './App.css';
 // import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit'
-
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Auxilliary';
 class App extends Component {
   
   constructor(props) {
@@ -13,11 +14,13 @@ class App extends Component {
   }
   state = {
     persons : [
-      {name:"Praveen"},
-      {name:"Abhay"},
-      {name:"Dorami"}
+      {name:"Praveen",id:"p1"},
+      {name:"Abhay",id:"p2"},
+      {name:"Dorami",id:"p3"}
     ],
-    userName : "Raj"
+    userName : "Raj",
+    showCockpit: true,
+    changedCounter : 0
   }
 
   static getDerivedStateFromProps(props,state) {
@@ -66,7 +69,9 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-    this.setState( {persons: persons} )
+    this.setState((prevState,props) => {
+      return {persons: persons,changedCounter :prevState.changedCounter + 1} 
+    })
   }
 
   userNameChangeHandler = (event) => {
@@ -93,16 +98,22 @@ class App extends Component {
           changed={this.nameChangeHandler}/>;
     }
     return (
-        <div className={classes.App}>
-          <Cockpit 
+        // <div className={classes.App}>
+        // <WithClass classes={classes.App}>
+        <Aux>
+          <button onClick={()=>{this.setState({showCockpit:false})}}>Remove Cockpit</button>
+          { this.state.showCockpit ? (<Cockpit 
           showPersons={this.state.showPersons}
-          persons={this.state.persons}
+          personsLength={this.state.persons.length}
           clicked={this.togglePersonsHandler}
-          title={this.props.appTitle}/>
+          title={this.props.appTitle}/>)
+          : null}
           {persons}
-      </div>
+        </Aux>
+        // </WithClass>
+      // </div>
     );
   }
 }
 
-export default App;
+export default withClass(App,classes.App);
