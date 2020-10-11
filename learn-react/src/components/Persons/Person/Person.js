@@ -28,9 +28,9 @@ class Person extends Component {
             // <div className={classes.Person}>
             // <React.Fragment>
             <Aux>
-                <AuthContext.Consumer>
-                    {context => context.authenticated ? <p>Authenticated!</p> : <p>Please Log in</p>}
-                </AuthContext.Consumer>
+                {/* <AuthContext.Consumer> */}
+                    {this.context.authenticated ? <p>Authenticated!</p> : <p>Please Log in</p>}
+                {/* </AuthContext.Consumer> */}
                 <p onClick={this.props.click}>I'm a {this.props.name}</p>
                 <p>{this.props.children} </p>
                 <input className= {classes.input} type="text"
