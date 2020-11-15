@@ -1,15 +1,25 @@
 import React from 'react';
-import { FaqContainer } from './containers/faq';
-import { FooterContainer } from './containers/footer';
-import { JumbotronContainer } from './containers/jumbotron';
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import * as ROUTES from './constants/routes';
+import { Home , Browse, Signin, Signup } from './pages';
+import { IsUserRedirect , ProtectedRoute } from './helpers/routes';
 function App() {
+  const user = null;
   return (
-    <>
-      <JumbotronContainer />
-      <FaqContainer />
-      <FooterContainer />
-    </>
+    <Router>
+      <IsUserRedirect user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_IN} exact>
+        <Signin />
+      </IsUserRedirect>
+      <IsUserRedirect user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_UP} exact>
+        <Signup />
+      </IsUserRedirect>
+      <ProtectedRoute user={user} path={ROUTES.BROWSE} exact>
+        <Browse />
+      </ProtectedRoute>
+      <IsUserRedirect user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.HOME} exact>
+        <Home />
+      </IsUserRedirect>
+    </Router>
   )
 }
 

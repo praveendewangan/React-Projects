@@ -1,18 +1,25 @@
 import React from 'react';
-import { Accordian } from '../components';
+import { Accordion } from '../components';
+import OptForm from '../components/opt-form';
 import faqData from '../fixtures/faqs.json';
 
 export function FaqContainer() {
     return (
-        <Accordian>
-            <Accordian.Title>Frequently Asked Questions</Accordian.Title>
+        <Accordion>
+            <Accordion.Title>Frequently Asked Questions</Accordion.Title>
             {faqData.map(item => 
-                <Accordian.Item keys={item.id}>
-                    <Accordian.Header>{item.header}</Accordian.Header>
-                    <Accordian.Body>{item.body}</Accordian.Body>
-                </Accordian.Item>
+                <Accordion.Item keys={item.id}>
+                    <Accordion.Header>{item.header}</Accordion.Header>
+                    <Accordion.Body>{item.body}</Accordion.Body>
+                </Accordion.Item>
             )}
-            <Accordian.Item></Accordian.Item>
-        </Accordian>
+            <Accordion.Item></Accordion.Item>
+            <OptForm>
+                <OptForm.Input placeholder="Email address" />
+                <OptForm.Button>Try it now</OptForm.Button>
+                <OptForm.Break />
+                <OptForm.Text>Ready to watch? Enter your email to create or restart your membership</OptForm.Text>
+            </OptForm>
+        </Accordion>
     )
 }
