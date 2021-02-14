@@ -5,10 +5,28 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './store/reducer';
-
-const store = createStore(reducer);
+import { combineReducers, createStore, applyMiddleware,compose} from 'redux';
+import burgerBuilder from './store/reducers/burgerBuilder';
+import thunk from 'redux-thunk';
+// const rootReducer = combineReducers({
+//     ctr:counterReducer,
+//     res:resultReducer
+// });
+const logger = store => {
+  return next => {
+    return action => {
+      console.log('[Middleware] Dispatching',action);
+      const result = next(action);
+      console.log("[Middleware] next state",store.getState());
+      return result;
+    }
+  }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(burgerBuilder,composeEnhancers(
+  applyMiddleware(thunk)
+));
+// const store = createStore(reducer,applyMiddleware(logger));
 const app = (
   <Provider store={store}>
     <BrowserRouter>
