@@ -1,0 +1,20 @@
+React.js 
+Next.js
+Tailwind css
+Material UI
+Firebase - Firestore
+NextAuth
+Draft.js
+SSR - Server side rendering
+
+npx create-next-app -e with-tailwindcss my-project
+npm run dev
+npm i -E @material-tailwind/react
+https://material-tailwind.com/
+import "@material-tailwind/react/tailwind.css";
+npm install firebase
+npm install next-auth
+npm install @next-auth/firebase-adapter
+npm install react-firebase-hooks
+https://github.com/jpuri/react-draft-wysiwyg
+npm install --save react-draft-wysiwyg draft-js
